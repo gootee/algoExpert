@@ -1,19 +1,23 @@
-function apartmentHunting(blocks, reqs) {
-  let blockProfiles = []
-  const blockCount = blocks.length
+interface Block {
+  [key: string]: boolean | number;
+}
+
+export function apartmentHunting(blocks: Block[], reqs: string[]) {
+  let blockProfiles: Block[] = []
+  const blockCount: number = blocks.length
 
   const loadBlockProfiles = () => {
     for (let i=0; i<blockCount; i++) {
-      const thisBlock = blocks[i]
-      let maxDistance = 0
+      const thisBlock: Block = blocks[i]
+      let maxDistance: number = 0
 
-      for (req of reqs) {
-        let reqDistance = 0
+      for (const req of reqs) {
+        let reqDistance: number = 0
   
         if (!thisBlock[req]) {
           for (let n=1; n<blockCount; n++) {
-            const indexBefore = i - n
-            const indexAfter = i + n
+            const indexBefore: number = i - n
+            const indexAfter: number = i + n
 
             if (indexBefore > -1) {
               const beforeBlock = blocks[indexBefore]

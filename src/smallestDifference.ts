@@ -1,10 +1,12 @@
-function smallestDifference(arrayOne, arrayTwo) {
+type Pair = [number, number]
+
+export function smallestDifference(arrayOne: number[], arrayTwo: number[]) {
   const one = arrayOne.sort((a, b) => a - b)
   const two = arrayTwo.sort((a, b) => a - b)
-  const oneCount = one.length
-  const twoCount = two.length
-  let smallestDiff = Number.POSITIVE_INFINITY
-  let smallestPair = []
+  const oneCount: number = one.length
+  const twoCount: number = two.length
+  let smallestDiff: number = Number.POSITIVE_INFINITY
+  let smallestPair: Pair = [Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY]
   let oneIndex = 0, twoIndex = 0, letsContinue = true
 
   while (letsContinue) {
@@ -38,5 +40,4 @@ const winnerPair = smallestDifference(arrOne, arrTwo)
 
 console.log(winnerPair)
 
-// Do not edit the line below.
 exports.smallestDifference = smallestDifference;

@@ -1,8 +1,8 @@
-function nodeDepths(root) {
+export function nodeDepths(root: BinaryTree) {
   let depth = 0 
 
-  const addNode = (node, depth) => {
-    let nodeDepthTotal = 0
+  const addNode = (node: BinaryTree, depth: number) => {
+    let nodeDepthTotal: number = 0
     if (node.left) {
       nodeDepthTotal += addNode(node.left, depth + 1)
     }
@@ -15,9 +15,12 @@ function nodeDepths(root) {
   return (addNode(root, depth))
 }
 
-// This is the class of the input binary tree.
 class BinaryTree {
-  constructor(value) {
+  value: number;
+  left: BinaryTree | null;
+  right: BinaryTree | null;
+
+  constructor(value: number) {
     this.value = value;
     this.left = null;
     this.right = null;
@@ -37,5 +40,4 @@ root.right.right = new BinaryTree(7);
 const depthTotal = nodeDepths(root)
 console.log(depthTotal)
 
-// Do not edit the line below.
 exports.nodeDepths = nodeDepths;

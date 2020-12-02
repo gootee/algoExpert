@@ -1,38 +1,42 @@
 class BinaryTree {
-  constructor(value) {
+  value: number;
+  left: BinaryTree | null;
+  right: BinaryTree | null;
+
+  constructor(value: number) {
     this.value = value;
     this.left = null;
     this.right = null;
   }
 }
 
-function branchSums(root) {
-  const getBranchSum = (node, sums) => {
+export function branchSums(root: BinaryTree): number[] {
+  const getBranchSum = (node: BinaryTree, sums: number[]) => {
     let subNodes = false
     if (node.left) {
       subNodes = true
-      let localSums = []
+      let localSums: number[] = []
       getBranchSum(node.left, localSums)
       for (let i=0; i<localSums.length; i++) {
-        sums.push(parseInt(localSums[i]) + parseInt(node.value))
+        sums.push(localSums[i] + node.value)
       }
     }   
 
     if (node.right) {
       subNodes = true
-      let localSums = []
+      let localSums: number[] = []
       getBranchSum(node.right, localSums)
       for (let i=0; i<localSums.length; i++) {
-        sums.push(parseInt(localSums[i]) + parseInt(node.value))
+        sums.push(localSums[i] + node.value)
       }
     } 
 
     if (!subNodes) {
-      sums.push(parseInt(node.value))
+      sums.push(node.value)
     }
   }
 
-  let sums = []
+  let sums: number[] = []
   getBranchSum(root, sums)
   return sums
 }
@@ -54,7 +58,7 @@ root.right.right = new BinaryTree(7);
 // root.right.right.right = new BinaryTree(100);
 
 const branchSumsArr = branchSums(root)
-console.log(branchSumsArr)
+console.log("sums = " + branchSumsArr)
 
 // Do not edit the lines below.
 exports.BinaryTree = BinaryTree;

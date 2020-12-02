@@ -1,18 +1,21 @@
-// This is an input class. Do not edit.
 class BST {
-  constructor(value) {
+  value: number;
+  left: BST | null;
+  right: BST | null;
+
+  constructor(value: number) {
     this.value = value;
     this.left = null;
     this.right = null;
   }
 }
-  
-function validateBst(tree) {
-  const validateNode = (node, min, max) => {
+
+export function validateBst(tree: BST) {
+  const validateNode = (node: BST | null, min: number, max: number): boolean => {
 		if (node == null) { return true }
     if (node.value < min || node.value >= max) { return false }
 
-    const leftOK = validateNode(node.left, min, node.value)
+    const leftOK: boolean = validateNode(node.left, min, node.value)
     return leftOK && validateNode(node.right, node.value, max)
   }
 

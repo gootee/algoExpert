@@ -1,6 +1,23 @@
-function findClosestValueInBst(root, target) {
-  const checkNode = (node, currentWinner) => {
-    const checkDistance = (currentNode) => {
+class BST {
+  value: number;
+  left: BST | null;
+  right: BST | null;
+
+  constructor(value: number) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+type Winner = {
+  node: BST | null;
+  distance: number
+}
+
+export function findClosestValueInBst(root: BST, target: number) : number | null {
+  const checkNode = (node:BST|null, currentWinner: Winner) => {
+    const checkDistance = (currentNode: BST) => {
       const distance = Math.abs(currentNode.value - target)
       if (distance < currentWinner.distance) {
         currentWinner.node = currentNode
@@ -31,23 +48,14 @@ function findClosestValueInBst(root, target) {
     }    
   }
 
-  let overallWinner = {
-    node: null,
+  let overallWinner: Winner = {
+    node: new BST(Number.NEGATIVE_INFINITY),
     distance: Number.POSITIVE_INFINITY,
   }
   
   checkNode(root, overallWinner)
 
-  return overallWinner.node.value ? overallWinner.node.value : null
-}
-
-// This is the class of the input tree. Do not edit.
-class BST {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
+  return overallWinner.node && overallWinner.node.value ? overallWinner.node.value : null
 }
 
 const root = new BST(10);

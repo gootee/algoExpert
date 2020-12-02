@@ -1,9 +1,9 @@
-function binarySearch(array, target) {
-  const binaryHelper = (startIndex, length) => {
+function binarySearch(array: number[], target: number): number {
+  const binaryHelper = (startIndex: number, length: number): number => {
     if (length < 1) { return -1 }
 
-    const medIndex = startIndex + Math.max(0, Math.floor(length/2) - 1)
-    const medValue = array[medIndex]
+    const medIndex: number = startIndex + Math.max(0, Math.floor(length/2) - 1)
+    const medValue: number = array[medIndex]
 
     if (medValue === target) {
       return medIndex

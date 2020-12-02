@@ -1,19 +1,18 @@
-// Do not edit the class below except
-// for the depthFirstSearch method.
-// Feel free to add new properties
-// and methods to the class.
-class Node {
-  constructor(name) {
+export class Node {
+  name: string
+  children: Node[]
+
+  constructor(name: string) {
     this.name = name;
     this.children = [];
   }
 
-  addChild(name) {
-    this.children.push(new Node(name));
-    return this;
+  addChild(name: string) {
+    this.children.push(new Node(name))
+    return this
   }
 
-  depthFirstSearch(array) {
+  depthFirstSearch(array: string[]) {
     array.push(this.name)
     for (let child of this.children) {
       child.depthFirstSearch(array)
@@ -29,11 +28,7 @@ graph.children[2].addChild('G').addChild('H');
 graph.children[0].children[1].addChild('I').addChild('J');
 graph.children[2].children[0].addChild('K');
 
-const results = []
+const results: string[] = []
 graph.depthFirstSearch(results)
 console.log(results)
 
-// chai.expect(graph.depthFirstSearch([])).to.deep.equal(['A', 'B', 'E', 'F', 'I', 'J', 'C', 'D', 'G', 'K', 'H']);
-// Do not edit the line below.
-
-exports.Node = Node;
