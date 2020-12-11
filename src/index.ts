@@ -1,53 +1,42 @@
-type Triplet = [number, number, number]
-type Twin = [number, number]
+export function longestPalindromicSubstring(string: string): string {
+  const array: string[] = string.split('')
+  let longestStartIndex: number = -1
+  let longestLength: number = 0
 
-type TwinObj = Record<string, boolean>
-
-export function threeNumberSum(array: number[], targetSum: number): Triplet[] {
-  const triplets: Triplet[] = []
-  // let twins: Record<number, Twin[]>  = {}
-  let twins: Record<number, TwinObj>  = {}
-
-  const loadTwinValues = () => {
-    for (let i=0; i<array.length; i++) {
-      for (let n=0; n<array.length; n++) {
-        if (i === n) { continue }
-
-        const sum: number = array[i] + array[n]
-        let twin: Twin = [array[i], array[n]].sort() as Twin
-
-        if (twins.hasOwnProperty(sum)) {
-          // const twinString: string = new String(twin).toString()
-          const twinString: string = twin.toString()
-          // const theseTwins = twins[twinString]
-
-        } else {
-          const twinString: string = twin.toString()
-          twins[sum] =  {twinString: true}
-        }
-      }
+  const checkLongest = (length: number, leftIndex: number): void => {
+    if (length > longestLength) {
+      longestLength = length
+      longestStartIndex = leftIndex          
     }
   }
 
-  loadTwinValues()
+  for (let index = 0; index < array.length; index++) {
+    for (let n = 0; n < array.length; n++) {
+      const leftIndex: number = index - n
+      const rightIndex: number = index + n 
 
-  //loop array
-    //if twins
-      // create triplets
-    // else
+      if (leftIndex >= 0 && array[leftIndex] === array[rightIndex]) {
+        checkLongest(1 + (2 * n), leftIndex)
+      } else {
+        break
+      }
+    }
 
+    for (let n = 0; n < array.length; n++) {
+      const leftIndex: number = index - n
+      const rightIndex: number = index + n + 1
 
-  if (triplets.length > 0) {
-    return triplets
-  } else {
-    return [[-1, -1, -1]]
+      if (rightIndex <= array.length - 1 && array[leftIndex] === array[rightIndex]) {
+        checkLongest(2 * (n + 1), leftIndex)
+      } else {
+        break
+      }
+    }
   }
+  return array.slice(longestStartIndex, longestStartIndex + longestLength).join('')
 }
 
-console.log(threeNumberSum([12, 3, 1, 2, -6, 5, -8, 6], 0))
-
-// [
-//   [-8, 2, 6],
-//   [-8, 3, 5],
-//   [-6, 1, 5],
-// ]
+// const subjectString = 'abaxyzzyxf'
+const subjectString = "abcdefghfedcbaa"
+const test = longestPalindromicSubstring(subjectString)
+console.log(test)
