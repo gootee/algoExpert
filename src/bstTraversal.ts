@@ -37,13 +37,13 @@ export function postOrderTraverse(tree: BST | null, array: number[]) {
   return array;
 }
 
-const root = new BST(10);
-root.left = new BST(5);
-root.left.left = new BST(2);
-root.left.left.left = new BST(1);
-root.left.right = new BST(5);
-root.right = new BST(15);
-root.right.right = new BST(22);
+const root = new BST(10)
+root.left = new BST(5)
+root.left.left = new BST(2)
+root.left.left.left = new BST(1)
+root.left.right = new BST(5)
+root.right = new BST(15)
+root.right.right = new BST(22)
 const inOrder: number[] = inOrderTraverse(root, [])
 // [1, 2, 5, 5, 10, 15, 22]
 const preOrder: number[] = preOrderTraverse(root, [])
