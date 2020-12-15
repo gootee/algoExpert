@@ -37,4 +37,4 @@ root.left.right.right.right = new BinaryTree(6)
 root.right = new BinaryTree(2)
 
 const actual = binaryTreeDiameter(root)
-console.log(actual)
+console.log(`tree diameter = ${actual}`)
