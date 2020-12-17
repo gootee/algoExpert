@@ -47,6 +47,4 @@ const theInserts = [2, 3, 4, 5, 6, 7]
 // const theInserts = [2, -1]
 const test = new BinaryTree(1).insert(theInserts);
 const maxPath = maxPathSum(test)
-console.log(maxPath)
-
-// 18
+console.log(`max path = ${maxPath}`)
